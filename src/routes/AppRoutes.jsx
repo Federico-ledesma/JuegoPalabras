@@ -10,7 +10,7 @@ import Resultado from "../pages/7-Result/Result";
 
 export default function AppRoutes() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/JuegoPalabras">
             <Routes>
 
                 <Route path="/" element={<Home />} />

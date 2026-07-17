@@ -1,0 +1,92 @@
+.Btn1{
+    width: 80%;
+    height: 5rem;
+    background: rgb(140, 0, 255);
+    color: white;
+    border: 2px solid #8B3DFF;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Btn1:hover{
+    background: #A855F7;
+}
+
+.Btn2{
+    width: 80%;
+    height: 5rem;
+    background: transparent;
+    border: 2px solid #8B3DFF;
+    color: white;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.Btn3{
+    width: 80%;
+    height: 4.5rem;
+    background: transparent;
+    border-radius: .5rem;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 1.2rem;
+}
+
+.Btn4{
+    width: 11rem;
+    height: 4rem;
+    background: transparent;
+    color: #fff;
+    border-color: #8B3DFF;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.Btn4:hover{
+    background: #8400ffb2;
+}
+
+.boton-configuracion{
+    width: 4rem;
+    height: 3rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.Btn5{
+    color: red;
+    background-color: rgba(73, 0, 0, 0.295);
+    border: 2px solid red;
+    height: 4rem;
+    margin: 2rem auto 2rem;
+}
+
+.Btn6{
+    width: 90%;
+    height: 3.5rem;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    gap: 1rem;
+}
+
+.Btn7{
+    font-size: 1.5rem;
+}
+
+
+
+    

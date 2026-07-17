@@ -1,0 +1,86 @@
+
+.titulo-resultado-container{
+    border: 1px solid #f00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    gap: 1rem;
+}
+
+.icono-resultado1{
+    font-size: 4rem;
+}
+
+.icono-resultado2{
+    font-size: 4rem;
+}
+
+.partida-finalizada{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+.ganador-container{
+    border: 1px solid #f00;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 20rem;
+    margin: 1rem;
+}
+
+.ganador1-container{
+    border: 1px solid #f00;
+    width: 50%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ganador2-container{
+    border: 1px solid #f00;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.resumen-container{
+    border: 1px solid #f00;
+    height: 15rem;
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.resumen{
+    border: 1px solid #f00;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.puntos-container{
+    border: 1px solid #f00;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    height: 20rem;
+    text-align: start;
+}
+
+
+

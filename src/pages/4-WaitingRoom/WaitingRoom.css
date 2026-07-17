@@ -1,0 +1,139 @@
+.titulo-espera{
+    width: 100%;
+    text-align: center;
+}
+
+.subtitulo-espera{
+    color: #C7C9D9;
+    font-size: 1.5rem;
+    padding: 1.2rem;
+    text-align: center;
+}
+
+.separador-1{
+    border: 2px solid rgb(132, 0, 255);
+    width: 15%;
+}
+
+.codigo-sala-container{
+    border: 1px solid purple;
+    background-color: #00031f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.titulo-codigo-sala{
+    padding: 2rem 0 0 0;
+}
+
+.codigo-container{
+    border: 1px solid purple;
+    background-color: #00041f;
+    padding: 1rem;
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.sala{
+    color: rgb(132, 0, 255);
+    font-size: 4rem;
+}
+
+.icono-codigo-container{
+    background-color: #00083d;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.icono-codigo-sala{
+    font-size: 2rem;
+}
+
+.separador-2{
+    border: 1px solid rgb(35, 1, 66);
+    width: 100%;
+}
+
+.titulo-jugadores{
+    font-size: 1.5rem;
+    padding: 2rem 0 2rem 0;
+}
+
+.jugadores-container{
+    width: 100%;
+    margin: 1rem;
+}
+
+.jugadores{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10%;
+    height: 8rem;
+    padding: 1rem;
+    background-color: #01072e;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.nombre-jugador{
+    font-size: 1.5rem;
+}
+
+.listo{
+    display: flex;
+    align-items: center;
+    color: greenyellow;
+    height: 3rem;
+    gap: .5rem;
+}
+
+.espera{
+    color: #C7C9D9;
+    font-size: 1.2rem;
+}
+
+.pasos-container{
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: #01072e;
+    border: 1px solid purple;
+}
+
+.pasos{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10%;
+    height: 8rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(35, 1, 66);
+    margin: 0 1rem;
+}
+
+.titulo-paso{
+    font-size: 1.5rem;
+}
+
+.paso{
+    font-size: 1.2rem;
+    color: #C7C9D9;
+}
+
+.icono-codigo-container{
+    cursor:pointer;
+    transition:.2s;
+}
+
+.icono-codigo-container:hover{
+    transform:scale(1.1);
+}

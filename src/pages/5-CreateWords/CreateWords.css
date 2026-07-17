@@ -1,0 +1,152 @@
+.linea-temporal-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.linea-temporal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
+    padding: .1rem;
+}
+
+.linea{
+    width: 5%;
+    border: 1px solid rgb(164, 0, 185);
+}
+
+.logos{
+    width: 5rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: .5rem;
+}
+
+.linea-temporal:nth-child(1),
+.linea-temporal:nth-child(3){
+    background-color: blueviolet;
+}
+
+.linea-temporal:nth-child(5) {
+    border: 2px solid blueviolet;
+}
+
+.linea-temporal:nth-child(7) {
+    border: 2px solid rgba(137, 43, 226, 0.274);
+}
+
+
+.titulo-crear-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 2%;
+    margin-top: 1.5rem;
+}
+
+.fondo-crear{
+    width: 30%;
+}
+
+.titulo-crear{
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.subtitulo-crear{
+    text-align: center;
+    font-size: 1.5rem;
+    padding: .2rem 4rem;
+}
+
+
+.palabras-container{
+    min-height: 45rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    background-color: rgba(33, 19, 46, 0.479);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: 1px solid blueviolet;
+}
+
+
+.palabras{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.titulo-palabra{
+    font-size: 2rem;
+    background-color: blueviolet;
+    margin: 1rem;
+    width: 3rem;
+    height: 2.5rem;
+    text-align: center;
+    border-radius: 50%;    
+}
+
+.palabra{
+    width: 100%;
+    text-align: center;
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.26);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.regla{
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.loguito-container{
+    border: 1px solid blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(28, 2, 53, 0.315);
+    margin: 1rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.icono-loguito{
+    font-size: 3.5rem;
+    color: yellow;
+    filter: drop-shadow(0px 0px 6px rgb(255, 238, 0));
+}
+
+.loguito-texto{
+    width: 20rem;
+    height: 3.5rem;
+    text-wrap: wrap;
+    font-size: 1.5rem;
+}
+
+
+.boton-comenzar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+}

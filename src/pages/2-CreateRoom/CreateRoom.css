@@ -1,0 +1,134 @@
+
+
+
+
+
+
+.titulo-crear-sala-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2.5rem;
+    height: 30rem;
+}
+
+.logo-crear-sala{
+    width: 100%;
+    height: 50%;
+}
+
+.crear-sala-titulo{
+    color: #ffffff;
+    width: 80%;
+    padding: 2rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.subtitulo-crear-sala{
+    color: #C7C9D9;
+    width: 80%;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+/* crear sala*/
+
+.crear-sala-container{
+    border: 2px solid #8B3DFF;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 2rem;
+}
+
+.ingresar-nombre-container{
+    display: flex;
+    justify-content: center;
+}
+
+.input-nombre{
+    width: 90%;
+    height: 3rem;
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+}
+
+.icono{
+    font-size: 1.5rem;
+    color: rgb(140, 0, 255);
+
+}
+
+.separador{
+    width: 100%;
+    height: 10%;
+    border: 1px solid #C7C9D9;;
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.categoria-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icono-categoria-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 2rem;
+}
+
+/* configuracion*/
+
+
+
+.titulo-boton-configuracion{
+    color: #fff;
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.boton-crear-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 20rem;
+}
+
+.boton{
+    background-color: #C7C9D9;
+    width: 25rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+
+    gap: 5rem;
+}
+
+.contador{
+    color: #000000;
+    font-size: 2rem;
+    width: 20%;
+    text-align: center;
+}
+
+.boton-sala-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+}

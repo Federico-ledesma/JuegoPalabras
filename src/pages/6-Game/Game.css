@@ -1,0 +1,376 @@
+
+.juego-jugadores-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.jugador1{
+    border: 2px solid rgb(86, 78, 117);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.jugador1-img{
+    border: 2px solid blueviolet;
+}
+
+.nombre-jugador1{
+    font-size: 1.5rem;
+}
+
+
+.turno{
+    border: 2px solid rgb(86, 78, 117);
+    width: 50%;
+    height: 6.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.jugador2{
+    border: 2px solid rgb(86, 78, 117);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.jugador2-img{
+    border: 2px solid greenyellow;
+}
+
+.nombre-jugador2{
+    font-size: 1.5rem;
+}
+
+.puntaje{
+    color: blueviolet;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.turno-titulo{
+    font-size: 1.1rem;
+    padding-top: .4rem;
+}
+
+.turno-de{
+    font-size: 1.4rem;
+    padding: .5rem;
+    color: rgb(199, 140, 255);
+}
+
+.ronda{
+    width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 8px;
+    border: 1px solid #f00;
+}
+    
+.div1 {
+    grid-row: span 8 / span 8;
+    border: 1px solid #f00;
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 8 / span 8;
+    border: 1px solid #f00;
+}
+
+.div3 {
+    grid-row: span 4 / span 4;
+    grid-column-start: 4;
+    border: 1px solid #f00;
+}
+
+.div4 {
+    grid-row: span 4 / span 4;
+    grid-column-start: 4;
+    grid-row-start: 5;
+    border: 1px solid #f00;
+}
+     
+
+.palabra-juego-container{
+    border: 1px solid #f00;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+}
+
+.letras-container{
+    border: 1px solid rgb(255, 252, 252);
+    height: 40rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem;
+}
+
+.contenedor-botones{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    gap:15px;
+    margin-top:20px;
+}
+
+.contenedor-botones button{
+    width:100%;
+    cursor: pointer;
+}
+
+.contenedor-botones input{
+    width:100%;
+    height:50px;
+
+    padding:0 15px;
+
+    border:none;
+    border-radius:12px;
+
+    font-size:16px;
+
+    box-sizing:border-box;
+}
+
+
+.letras{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:10px;
+
+    width:100%;
+
+}
+
+.letras button{
+
+    aspect-ratio:1;
+
+    border-radius:12px;
+
+    font-size:20px;
+    font-weight:bold;
+
+}
+
+.letra-seleccionada{
+    background:#4F8CFF;
+    color:white;
+    transform:scale(1.08);
+    transition:.2s;
+}
+
+.letra-usada{
+
+    background:#ff3b30;
+    color:white;
+
+    animation:error .4s ease;
+
+}
+
+
+@keyframes error{
+
+    0%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-8px);
+    }
+
+    50%{
+        transform:translateX(8px);
+    }
+
+    75%{
+        transform:translateX(-8px);
+    }
+
+    100%{
+        transform:translateX(0);
+    }
+
+}
+
+.letra-correcta{
+    background:#35c759;
+    color:white;
+    animation: acierto .4s ease;
+    box-shadow:0 0 15px rgba(53,199,89,.7);
+}
+
+@keyframes acierto{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+.palabra-container{
+    background-color: rgba(19, 4, 32, 0.541);
+    margin: 1rem;
+}
+
+.palabra1-container{
+    display: flex;
+    height: 2.5rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #f00;
+}
+
+.palabra1{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #f00;
+    height: 3rem;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.palabra1-adivinar{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #f00;
+    height: 3rem;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.seleccionada{
+    transform: scale(1.1);
+}
+
+.turno{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    min-height:130px;
+    border-radius:18px;
+}
+
+.turno-icono{
+    font-size:30px;
+    line-height:1;
+}
+
+.turno-titulo{
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+    line-height:1;
+}
+
+.ronda{
+    font-size:18px;
+    text-align:center;
+}
+
+
+.mensaje-juego{
+
+    position:fixed;
+
+    top:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    padding:15px 25px;
+
+    border-radius:15px;
+
+    font-size:22px;
+    font-weight:bold;
+
+    z-index:100;
+
+    animation:aparecerMensaje .3s ease;
+
+}
+
+
+.mensaje-juego.correcto{
+
+    background:#35c759;
+    color:white;
+
+}
+
+
+.mensaje-juego.error{
+
+    background:#ff3b30;
+    color:white;
+
+}
+
+
+@keyframes aparecerMensaje{
+
+    from{
+
+        opacity:0;
+        transform:
+        translateX(-50%)
+        translateY(-20px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+        transform:
+        translateX(-50%)
+        translateY(0);
+
+    }
+
+}

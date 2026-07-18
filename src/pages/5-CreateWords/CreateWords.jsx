@@ -18,7 +18,6 @@ import Logo from "../../assets/Logo.png"
 function CrearPalabra() {
 
     const { codigo } = useParams();
-    console.log("CODIGO RECIBIDO:", codigo);
 
     const navigate = useNavigate();
 
@@ -45,10 +44,6 @@ function CrearPalabra() {
     }
 
     const guardar = async () => {
-
-         console.log("Código:", codigo);
-    console.log("Nombre:", nombreJugador);
-    console.log("Palabras:", palabras);
 
         if (palabras.some(p => p.trim() === "")) {
             alert("Completa las 5 palabras");

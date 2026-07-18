@@ -127,7 +127,6 @@ Código: ${codigo}`;
 
         } catch (error) {
 
-            console.log("Compartir cancelado");
 
         }
 

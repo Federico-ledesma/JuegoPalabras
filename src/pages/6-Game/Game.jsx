@@ -30,8 +30,6 @@ function Juego() {
 
     const navigate = useNavigate();
 
-    console.log("Entre al juego")
-
     const { codigo } = useParams();
 
     const [sala,setSala] = useState(null);
@@ -134,9 +132,12 @@ function Juego() {
 
     const palabraPrincipal = palabrasRival?.[0];
 
-    const palabraActual = palabrasRival?.[progresoJugador + 1];
+    const palabraActualNumero = progresoJugador + 1;
 
-    const letrasJugador = sala.letrasUsadas?.[jugadorActualID] || [];
+    const palabraActual = palabrasRival?.[palabraActualNumero];
+
+    const letrasJugador =
+    sala.letrasUsadas?.[jugadorActualID]?.[palabraActualNumero] || [];
 
     const palabrasMostradas = palabrasRival?.map((palabra,index)=>{
 
@@ -154,14 +155,7 @@ function Juego() {
 
 });
 
-    const pedirLetra = async(letra)=>{
-
-        if(!letra){
-            return;
-        }
-
-        letra = letra.toUpperCase();
-
+    const pedirLetra = async () => {
 
         const salaRef = doc(
             db,
@@ -169,65 +163,48 @@ function Juego() {
             codigo
         );
 
+        const palabraActualNumero = progresoJugador + 1;
 
         const letrasActuales =
-            sala.letrasUsadas?.[jugadorActualID] || [];
+            sala.letrasUsadas?.[jugadorActualID]?.[palabraActualNumero] || [];
 
+        const palabra = palabraActual.toUpperCase();
 
-        if(letrasActuales.includes(letra)){
+        // Buscar la siguiente letra que todavía no fue revelada
+        let siguienteLetra = null;
+
+        for (let i = 1; i < palabra.length; i++) {
+
+            if (!letrasActuales.includes(palabra[i])) {
+
+                siguienteLetra = palabra[i];
+                break;
+
+            }
+
+        }
+
+        // Ya no quedan letras por revelar
+        if (!siguienteLetra) {
             return;
         }
 
-
-        const palabra =
-            palabraActual.toUpperCase();
-
-
-        const existe =
-            palabra.includes(letra);
-
         const nuevasLetras = [
             ...letrasActuales,
-            letra
+            siguienteLetra
         ];
 
-
-
-        const datosActualizar = {
-
-            [`letrasUsadas.${jugadorActualID}`]:
-                nuevasLetras
-
-        };
-
-
-
-        // Si la letra NO existe cambia turno
-        if(!existe){
-
-
-        const nuevoTurno =
+        const siguienteTurno =
             sala.turno === "jugador1"
-            ? "jugador2"
-            : "jugador1";
-
-
-        console.log("CAMBIO TURNO A:", nuevoTurno);
-
-
-        datosActualizar.turno = nuevoTurno;
-
-    }
-
-        console.log("MI ID:", jugadorActualID);
-        console.log("TURNO ACTUAL:", sala.turno);
-        console.log("LETRA:", letra);
-        console.log("EXISTE:", existe);
-
-        await updateDoc(
-            salaRef,
-            datosActualizar
-        );
+                ? "jugador2"
+                : "jugador1";
+            
+        await updateDoc(salaRef, {
+            [`letrasUsadas.${jugadorActualID}.${palabraActualNumero}`]:
+                nuevasLetras,
+        
+            turno: siguienteTurno
+        });
 
     };
 
@@ -299,9 +276,12 @@ function Juego() {
                     nuevoRegistro
                 ],
 
-                letrasUsadas:{
-                    jugador1:[],
-                    jugador2:[]
+                letrasUsadas: {
+                    ...sala.letrasUsadas,
+                    [jugadorActualID]: {
+                        ...sala.letrasUsadas?.[jugadorActualID],
+                        [palabraActualNumero]: []
+                    }
                 },
 
 
@@ -529,33 +509,7 @@ function Juego() {
                         
                         
 
-                        <h2 className="titulo-elegir-letra">Elegi una letra</h2>
-                        <div className="letras">
-
-                            {
-                                letras.map((letra)=>(
-                                
-                                    <Button
-                                        key={letra}
-                                        text={letra}
-                                        disabled={!esMiTurno || letrasJugador.includes(letra)}
-                                        className={`
-                                            ${letraSeleccionada === letra ? "letra-seleccionada" : ""}
-                                            ${
-                                                letrasJugador.includes(letra)
-                                                    ? esLetraCorrecta(letra)
-                                                        ? "letra-correcta"
-                                                        : "letra-usada"
-                                                    : ""
-                                            }
-                                        `}
-                                        onClick={()=>setLetraSeleccionada(letra)}
-                                    />
-                                        
-                                ))
-                            }
-
-                        </div>
+                        
 
                         <div className="contenedor-botones">
                             <input
@@ -572,7 +526,7 @@ function Juego() {
                                     text="PEDIR LETRA"
                                     icon={<IoIosSend />}
                                     disabled={!esMiTurno}
-                                    onClick={()=>pedirLetra(letraSeleccionada)}
+                                    onClick={pedirLetra}
                                 />
 
                                 <Button
@@ -600,14 +554,15 @@ function Juego() {
                     <div className="palabra-container">
 
                         {
-                        palabrasPanel.map((item)=>(
-                        
-                        <div key={item.numero} className="palabra1">
-                        
+                            palabrasPanel.map((item, index) => (
+                            
+                                <div
+                                    key={index}
+                                    className="palabra1"
+                                >
 
-                                <span>
-                                {item.numero}
-                                </span>
+                            
+                        
 
 
                                 <p className="palabra1-adivinar">

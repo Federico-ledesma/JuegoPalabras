@@ -150,5 +150,4 @@ export async function guardarPalabras(codigo, nombreJugador, palabras) {
         [`${campoJugador}.listo`]: true
     });
 
-    console.log("Campo jugador:", campoJugador);
 }

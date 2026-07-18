@@ -19,7 +19,6 @@ import Logo from "../../assets/Logo.png"
 function Home() {
 
     const guardarPrueba = async () => {
-        console.log("Se hizo click")
         await addDoc(
             collection(db, "pruebas"),
             {

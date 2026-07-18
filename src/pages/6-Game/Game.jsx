@@ -378,10 +378,7 @@ function Juego() {
         .split("")
         .map((letra, index) => {
 
-            // La primera palabra se muestra completa
-            if (progresoJugador === 0) {
-                return letra;
-            }
+            
 
             // En las demás, la primera letra siempre visible
             if (index === 0) {
@@ -512,19 +509,19 @@ function Juego() {
                 <div>
                     <div className="palabra-juego-container">
 
-                    <h1 className="palabra-principal">
-                        {palabraPrincipal?.toUpperCase()} 
-                    </h1>
+                        <h1 className="palabra-principal">
+                            {palabraPrincipal?.toUpperCase()} 
+                        </h1>
+                    
+                        <div className="palabra-oculta">
+                            {palabraOculta}
+                        </div>
+                    
+                        <p>
+                            Pide una letra o intenta adivinar la palabra completa
+                        </p>
 
-                    <div className="palabra-oculta">
-                        {palabraOculta}
                     </div>
-
-                    <p>
-                        Pide una letra o intenta adivinar la palabra completa
-                    </p>
-
-                </div>
 
                     <hr></hr>
 

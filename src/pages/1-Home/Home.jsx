@@ -57,7 +57,7 @@ function Home() {
             <div className="boton-container">
                 <Button className={"Btn1"} icon={<FaPlus/>} text="CREAR SALA" to="/crear-sala
                 "/>
-                <Button className={"Btn2"} icon={<MdPeopleAlt />} text="UNIRSE A SALA"/>
+                <Button className={"Btn1"} icon={<MdPeopleAlt />} text="UNIRSE A SALA" to="ingresar-sala"/>
             </div>
 
             <img className="imagen-fondo" src={ImagenFondo}></img>

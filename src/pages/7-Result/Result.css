@@ -1,6 +1,5 @@
 
 .titulo-resultado-container{
-    border: 1px solid #f00;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +22,6 @@
 
 
 .ganador-container{
-    border: 1px solid #f00;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -32,7 +30,6 @@
 }
 
 .ganador1-container{
-    border: 1px solid #f00;
     width: 50%; 
     height: 100%;
     display: flex;
@@ -40,10 +37,15 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    border: 1px solid blueviolet;
+}
+
+.icono-ganador{
+    font-size: 2rem;
+    color: yellow;
 }
 
 .ganador2-container{
-    border: 1px solid #f00;
     width: 50%;
     height: 100%;
     display: flex;
@@ -51,36 +53,57 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    border: 1px solid blueviolet;
+
+}
+
+.icono-perdedor{
+    font-size: 2rem;
+    color: ghostwhite;
+}
+
+.titulo-resumen{
+    text-align: center;
+    padding-top: 4rem;
 }
 
 .resumen-container{
-    border: 1px solid #f00;
     height: 15rem;
     margin: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+    border: 1px solid #f00;
+
 }
 
 .resumen{
-    border: 1px solid #f00;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    text-align: center;
+
 }
 
 .puntos-container{
-    border: 1px solid #f00;
     display: flex;
     flex-direction: column;
     margin: 1rem;
     height: 20rem;
-    text-align: start;
+    text-align: center;
+    border: 1px solid blueviolet;
 }
 
 
+.boton-resultado-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
 

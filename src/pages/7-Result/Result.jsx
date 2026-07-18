@@ -21,6 +21,7 @@ import { CiClock2 } from "react-icons/ci";
 import { FaCrown } from "react-icons/fa6";
 import { FaRepeat } from "react-icons/fa6";
 import { FaHouseChimney } from "react-icons/fa6";
+import { FaSkull } from "react-icons/fa";
 
 function Resultado() {
 
@@ -232,7 +233,7 @@ function Resultado() {
 
                 <div className="ganador1-container">
 
-                    <FaCrown className="icono-corona"/>
+                    <FaCrown className="icono-ganador"/>
 
                     <img
                         className="logo"
@@ -257,6 +258,8 @@ function Resultado() {
 
                 <div className="ganador2-container">
 
+                   <FaSkull className="icono-perdedor"/> 
+
                     <img
                         className="logo"
                         src={Logo}
@@ -279,7 +282,7 @@ function Resultado() {
 
             </div>
 
-            <h2>RESUMEN DE LA PARTIDA</h2>
+            <h2 className="titulo-resumen">RESUMEN DE LA PARTIDA</h2>
             <div className="resumen-container">
 
                 <div className="resumen">
@@ -309,9 +312,10 @@ function Resultado() {
 
             <div className="puntos-container">
                 <TablaNaruto historial={historial}/>
+                
             </div>
 
-            <div>
+            <div className="boton-resultado-container">
                 <Button 
                     className="Btn1"
                     text="JUGAR OTRA PARTIDA"

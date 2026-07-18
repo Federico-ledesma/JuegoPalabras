@@ -17,6 +17,15 @@ import { FaListAlt } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
 import { IoIosSend } from "react-icons/io";
 
+const normalizarTexto = (texto) => {
+    return texto
+        .trim()
+        .replace(/\s+/g, " ")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase();
+};
+
 function Juego() {
 
     const navigate = useNavigate();
@@ -29,10 +38,6 @@ function Juego() {
 
     const [letraSeleccionada, setLetraSeleccionada] = useState("");
 
-    const [letrasCorrectas, setLetrasCorrectas] = useState([]);
-
-    const [letraIncorrecta, setLetraIncorrecta] = useState("");
-
     const nombreJugador = localStorage.getItem("nombreJugador");
 
     const [mensaje, setMensaje] = useState("");
@@ -43,7 +48,7 @@ function Juego() {
         "H","I","J","K","L","M",
         "N","Ñ","O","P","Q","R",
         "S","T","U","V","W",
-        "X","Y","Z"
+        "X","Y","Z",""
     ];
 
 
@@ -127,7 +132,9 @@ function Juego() {
 
     const progresoJugador = sala.progreso?.[jugadorActualID] ?? 0;
 
-    const palabraActual = palabrasRival?.[progresoJugador];
+    const palabraPrincipal = palabrasRival?.[0];
+
+    const palabraActual = palabrasRival?.[progresoJugador + 1];
 
     const letrasJugador = sala.letrasUsadas?.[jugadorActualID] || [];
 
@@ -179,26 +186,6 @@ function Juego() {
         const existe =
             palabra.includes(letra);
 
-        if(existe){
-                
-            setLetrasCorrectas(prev=>[
-                ...prev,
-                letra
-            ]);
-        
-        }
-
-        if(existe && !letrasCorrectas.includes(letra)){
-
-            setLetrasCorrectas(prev=>[
-                ...prev,
-                letra
-            ]);
-        
-        }
-
-
-
         const nuevasLetras = [
             ...letrasActuales,
             letra
@@ -218,7 +205,6 @@ function Juego() {
         // Si la letra NO existe cambia turno
         if(!existe){
 
-            setLetraIncorrecta(letra);
 
         const nuevoTurno =
             sala.turno === "jugador1"
@@ -265,7 +251,9 @@ function Juego() {
 
 
     // RESPUESTA CORRECTA
-    if(respuesta.toUpperCase() === palabraCorrecta){
+    if (
+        normalizarTexto(respuesta) === normalizarTexto(palabraCorrecta)
+    ) {
 
 
         const puntosGanados = Math.max(
@@ -281,7 +269,7 @@ function Juego() {
 
 
         const termino =
-            nuevoProgreso >= 5;
+            nuevoProgreso >= 4;
 
         const historialActual = sala.historial || [];
 
@@ -330,6 +318,9 @@ function Juego() {
             }
         );
 
+        setLetraSeleccionada("");
+        setRespuesta("");
+
 
         setTipoMensaje("correcto");
         setMensaje(`🎉 ¡CORRECTO! +${puntosGanados} puntos`);
@@ -351,7 +342,6 @@ function Juego() {
 
     }else{
 
-
         // RESPUESTA INCORRECTA
         const siguienteTurno =
             sala.turno === "jugador1"
@@ -362,12 +352,12 @@ function Juego() {
         await updateDoc(
             salaRef,
             {
-
                 turno:siguienteTurno
-
             }
         );
 
+        // Limpiar el input
+        setRespuesta("");
 
         setTipoMensaje("error");
         setMensaje("❌ INCORRECTO");
@@ -382,21 +372,32 @@ function Juego() {
 
 
     const palabraOculta = palabraActual
-        ?
-        palabraActual
+    ?
+    palabraActual
         .toUpperCase()
         .split("")
-        .map((letra)=>{
-        
-            if(letrasJugador.includes(letra)){
+        .map((letra, index) => {
+
+            // La primera palabra se muestra completa
+            if (progresoJugador === 0) {
                 return letra;
             }
-        
+
+            // En las demás, la primera letra siempre visible
+            if (index === 0) {
+                return letra;
+            }
+
+            // Las letras pedidas se muestran
+            if (letrasJugador.includes(letra)) {
+                return letra;
+            }
+
             return "_";
-        
+
         })
         .join(" ")
-        :"";
+    : "";
 
     const palabraCompleta = palabraActual
         ?
@@ -409,6 +410,42 @@ function Juego() {
 
     const esMiTurno =
     sala.turno === jugadorActualID;
+
+    const palabrasPanel = palabrasRival?.map((palabra, index) => {
+
+        // La palabra principal siempre visible
+        if (index === 0) {
+            return {
+                texto: palabra,
+                completada: false,
+            };
+        }
+
+        // Si ya fue adivinada
+        if (index <= progresoJugador) {
+            return {
+                texto: palabra,
+                completada: true,
+            };
+        }
+
+        // Si todavía no fue adivinada
+        return {
+            texto:
+                palabra[0].toUpperCase() +
+                " " +
+                "_ ".repeat(palabra.length - 1),
+            completada: false,
+        };
+
+    });
+
+    const esLetraCorrecta = (letra) => {
+        return (
+            letrasJugador.includes(letra) &&
+            palabraActual?.toUpperCase().includes(letra)
+        );
+    };
 
     return (
         <>
@@ -453,7 +490,7 @@ function Juego() {
                     </span>
                 
                     <span className="ronda">
-                        Palabra {progresoJugador + 1}/5
+                        Palabra {progresoJugador + 2}/5
                     </span>
                 
                 </div>
@@ -475,8 +512,8 @@ function Juego() {
                 <div>
                     <div className="palabra-juego-container">
 
-                    <h1>
-                        PALABRA {sala.rondaActual}
+                    <h1 className="palabra-principal">
+                        {palabraPrincipal?.toUpperCase()} 
                     </h1>
 
                     <div className="palabra-oculta">
@@ -493,35 +530,9 @@ function Juego() {
 
                     <div className="letras-container">
                         
-                        <div className="contenedor-botones">
-                            <Button
-                                className="Btn1"
-                                text="PEDIR LETRA"
-                                icon={<IoIosSend />}
-                                disabled={!esMiTurno}
-                                onClick={()=>pedirLetra(letraSeleccionada)}
-                            />
+                        
 
-
-                           <input
-                                type="text"
-                                value={respuesta}
-                                onChange={(e)=>setRespuesta(e.target.value.toUpperCase())}
-                                placeholder="Escribe la palabra"
-                            />
-
-
-                            <Button
-                                className="Btn7"
-                                text="ADIVINAR PALABRA"
-                                disabled={!esMiTurno}
-                                onClick={adivinarPalabra}
-                            />
-
-
-                        </div>
-
-                        <h2>Elegi una letra</h2>
+                        <h2 className="titulo-elegir-letra">Elegi una letra</h2>
                         <div className="letras">
 
                             {
@@ -533,8 +544,13 @@ function Juego() {
                                         disabled={!esMiTurno || letrasJugador.includes(letra)}
                                         className={`
                                             ${letraSeleccionada === letra ? "letra-seleccionada" : ""}
-                                            ${letrasJugador.includes(letra) ? "letra-usada" : ""}
-                                            ${letrasCorrectas.includes(letra) ? "letra-correcta" : ""}
+                                            ${
+                                                letrasJugador.includes(letra)
+                                                    ? esLetraCorrecta(letra)
+                                                        ? "letra-correcta"
+                                                        : "letra-usada"
+                                                    : ""
+                                            }
                                         `}
                                         onClick={()=>setLetraSeleccionada(letra)}
                                     />
@@ -542,6 +558,33 @@ function Juego() {
                                 ))
                             }
 
+                        </div>
+
+                        <div className="contenedor-botones">
+                            <input
+                                className="input-adivinar"
+                                 type="text"
+                                 value={respuesta}
+                                 onChange={(e)=>setRespuesta(e.target.value.toUpperCase())}
+                                 placeholder="Escribe la palabra"
+                             />
+                            
+                            <div className="botones">
+                                <Button
+                                    className="Btn4"
+                                    text="PEDIR LETRA"
+                                    icon={<IoIosSend />}
+                                    disabled={!esMiTurno}
+                                    onClick={()=>pedirLetra(letraSeleccionada)}
+                                />
+
+                                <Button
+                                    className="Btn4"
+                                    text="ADIVINAR PALABRA"
+                                    disabled={!esMiTurno}
+                                    onClick={adivinarPalabra}
+                                />
+                            </div>
                         </div>
 
                         
@@ -552,39 +595,33 @@ function Juego() {
 
 
                 <div>
-                    <div>
-                        <FaListAlt /> <span>PALABRAS</span> 
-                        <p>Adivina las 5 palabras de tu amigo</p>
+                    <div className="titulo-palabras-adivinar-container">
+                        <h3 className="titulo-palabras-adivinar"><FaListAlt />PALABRAS</h3> 
+                        <p className="subtitulo-palabras-adivinar">Adivina las 5 palabras de tu amigo</p>
                     </div>
 
                     <div className="palabra-container">
 
                         {
-                        palabrasMostradas.map((item)=>(
+                        palabrasPanel.map((item)=>(
                         
-                        <div 
-                        key={item.numero}
-                        className="palabra1-container"
-                        >
+                        <div key={item.numero} className="palabra1">
                         
-                        <div className="palabra1">
-                        
-                        <span>
-                        {item.numero}
-                        </span>
-                        
-                        
-                        <p>
-                        {
-                        item.completada
-                        ?
-                        item.palabra
-                        :
-                        "_ _ _ _ _"
-                        }
-                        </p>
 
-                        </div>
+                                <span>
+                                {item.numero}
+                                </span>
+
+
+                                <p className="palabra1-adivinar">
+                                    {item.texto.toUpperCase()}
+
+                                    {
+                                        item.completada &&
+                                        " ✅"
+                                    }
+                                </p>
+
 
                         </div>
 

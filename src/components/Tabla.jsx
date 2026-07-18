@@ -27,11 +27,11 @@ const TablaNaruto = ({ historial }) => {
                         </td>
                 
                         <td>
-                            @{item.autor}
+                            {item.autor}
                         </td>
                 
                         <td>
-                            @{item.adivinador}
+                            {item.adivinador}
                         </td>
                 
                         <td>
@@ -43,6 +43,7 @@ const TablaNaruto = ({ historial }) => {
                         </td>
                 
                     </tr>
+
 
                 ))
             }

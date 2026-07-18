@@ -7,10 +7,12 @@ import SalaEspera from "../pages/4-WaitingRoom/WaitingRoom";
 import CrearPalabra from "../pages/5-CreateWords/CreateWords"
 import Juego from "../pages/6-Game/Game";
 import Resultado from "../pages/7-Result/Result";
+import ScrollToTop from "../components/ScrollToTop"
 
 export default function AppRoutes() {
     return (
         <BrowserRouter basename="/JuegoPalabras">
+             <ScrollToTop />
             <Routes>
 
                 <Route path="/" element={<Home />} />

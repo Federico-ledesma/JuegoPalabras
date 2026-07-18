@@ -57,10 +57,14 @@ function CrearPalabra() {
 
         try {
 
+            const palabrasLimpias = palabras.map((palabra) =>
+                palabra.trim().replace(/\s+/g, " ")
+            );
+    
             await guardarPalabras(
                 codigo,
                 nombreJugador,
-                palabras
+                palabrasLimpias
             );
 
             setEsperando(true);
